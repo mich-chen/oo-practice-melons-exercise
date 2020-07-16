@@ -18,15 +18,19 @@ class MelonType(object):
         self.is_seedless = is_seedless
         self.is_bestseller = is_bestseller
 
-    def add_pairing(self, pairing):
+    def add_pairing(self, *pairing):
         """Add a food pairing to the instance's pairings list."""
 
-        # Fill in the rest
+        self.pairings.extend(pairing)
+
 
     def update_code(self, new_code):
         """Replace the reporting code with the new_code."""
 
         # Fill in the rest
+
+# casaba = MelonType('cas', 2003, 'orange', False, False, 'Casaba')
+# casaba.add_pairing('strawberries', 'mint')
 
 
 def make_melon_types():
