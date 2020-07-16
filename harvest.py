@@ -39,26 +39,28 @@ class MelonType(object):
 def make_melon_types():
     """Returns a list of current melon types."""
 
-    all_melon_types = []
+    melon_types = []
+
+    def add_to_list(*melon):
+
+        melon_types.extend(melon)
 
     musk = MelonType('musk', 1998, 'green', True, True, 'Muskmelon')
     musk.add_pairing('mint')
-    all_melon_types.append(musk)
 
     casaba = MelonType('cas', 2003, 'orange', False, False, 'Casaba')
     casaba.add_pairing('strawberries', 'mint')
-    all_melon_types.append(casaba)
-
-    crenshaw = MelonType('cred', 1996, 'green', False, False, 'Crenshaw')
+    
+    crenshaw = MelonType('cren', 1996, 'green', False, False, 'Crenshaw')
     crenshaw.add_pairing('proscuitto')
-    all_melon_types.append(crenshaw)
 
     watermelon = MelonType('yw', 2013, 'yellow', False, True, 'Yellow Watermelon')
     watermelon.add_pairing('ice cream')
-    all_melon_types.append(watermelon)
 
+    add_to_list(musk, casaba, crenshaw, watermelon)
 
-    return all_melon_types
+    return melon_types
+
 
 def print_pairing_info(melon_types):
     """Prints information about each melon type's pairings."""
@@ -74,14 +76,15 @@ def print_pairing_info(melon_types):
 def make_melon_type_lookup(melon_types):
     """Takes a list of MelonTypes and returns a dictionary of melon type by code."""
 
-    reporting_codes = ('musk', 'cas', 'cren', 'yw')
-
     melontype_code = {}
 
     for melon in melon_types:
         melontype_code[melon.code] = melon
 
     return melontype_code
+
+# melon_types = make_melon_types()
+# melontype_code_dict = make_melon_type_lookup(melon_types)
 
 ############
 # Part 2   #
@@ -107,13 +110,35 @@ class Melon(object):
         else:
             return False
 
-
-
+# melon_types = make_melon_types()
+# make_melons(melon_types)
 
 def make_melons(melon_types):
     """Returns a list of Melon objects."""
 
-    # Fill in the rest
+    harvested_melons = []
+    
+    melon_dict = make_melon_type_lookup(melon_types)
+    # store dictionary of melon types with code as key in variable melon_by_id
+    
+    def add_to_list(*melon):
+
+        harvested_melons.extend(melon)
+
+    melon1 = Melon(melon_dict['yw'], 8, 7, 2, 'Sheila')
+    melon2 = Melon(melon_dict['yw'], 3, 4, 2, 'Sheila')
+    melon3 = Melon(melon_dict['yw'], 9, 8, 3, 'Sheila')
+    melon4 = Melon(melon_dict['cas'], 10, 6, 35, 'Sheila')
+    melon5 = Melon(melon_dict['cren'], 8, 9, 35, 'Michael')
+    melon6 = Melon(melon_dict['cren'], 8, 2, 35, 'Michael')
+    melon7 = Melon(melon_dict['cren'], 2, 3, 4, 'Michael')
+    melon8 = Melon(melon_dict['musk'], 6, 7, 4, 'Michael')
+    melon9 = Melon(melon_dict['yw'], 7, 10, 3, 'Sheila')
+
+    add_to_list(melon1, melon2, melon3, melon4, melon5, melon6, melon7, melon8, melon9)
+
+    return harvested_melons
+
 
 def get_sellability_report(melons):
     """Given a list of melon object, prints whether each one is sellable."""
