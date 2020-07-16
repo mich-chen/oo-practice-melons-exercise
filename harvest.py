@@ -19,6 +19,10 @@ class MelonType(object):
         self.is_bestseller = is_bestseller
         self.name = name
 
+    def __repr__(self):
+
+        return f'{self.name}'
+
     def add_pairing(self, *pairing):
         """Add a food pairing to the instance's pairings list."""
 
@@ -70,7 +74,14 @@ def print_pairing_info(melon_types):
 def make_melon_type_lookup(melon_types):
     """Takes a list of MelonTypes and returns a dictionary of melon type by code."""
 
-    # Fill in the rest
+    reporting_codes = ('musk', 'cas', 'cren', 'yw')
+
+    melontype_code = {}
+
+    for melon in melon_types:
+        melontype_code[melon.code] = melon
+
+    return melontype_code
 
 ############
 # Part 2   #
