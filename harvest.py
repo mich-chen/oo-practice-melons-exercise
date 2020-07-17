@@ -150,16 +150,29 @@ def get_sellability_report(melons):
         else:
             print(f'Harvested by {melon.harvester} from Field {melon.field} (NOT SELLABLE)')
     
-def open_and_read_file(input_file):
-    """ opens file and returns the file as a string """
+def melons_from_file(input_file):
+    """ opens file and creates melon object for each line 
 
-    return open(input_file).read()
+    Each line is shape #, color #, type '__', harvested by '__', field ' ' #
+    """
+    """ melon_data is a list with order: 'Shape', #, 'Color', #, 'Type', 
+    'type_code', 'Harvested', 'By', 'name', 'Field', '#', # """
+
+    melon_objects = []
+
+    melon_text = open(input_file)
+    for line in melon_text:
+        melon_data = line.split()
+        melon = Melon(melon_data[5], melon_data[1], melon_data[3], melon_data[-1], melon_data[8])
+        melon_objects.append(melon)
+
+    return melon_objects
 
 
 
-input_file = sys.argv[1:]
+input_file = sys.argv[1]
 
-melon_file_text = open_and_read_file(input_file)
+melon_file_text = melons_from_file(input_file)
 
 
 
