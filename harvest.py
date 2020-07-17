@@ -2,6 +2,7 @@
 # Part 1   #
 ############
 
+import sys
 
 class MelonType(object):
     """A species of melon at a melon farm."""
@@ -149,6 +150,17 @@ def get_sellability_report(melons):
         else:
             print(f'Harvested by {melon.harvester} from Field {melon.field} (NOT SELLABLE)')
     
+def open_and_read_file(input_file):
+    """ opens file and returns the file as a string """
+
+    return open(input_file).read()
+
+
+
+input_file = sys.argv[1:]
+
+melon_file_text = open_and_read_file(input_file)
+
 
 
 
