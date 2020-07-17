@@ -172,7 +172,7 @@ def melons_from_file(input_file):
 
 input_file = sys.argv[1]
 
-melon_file_text = melons_from_file(input_file)
+melon_data_objects = melons_from_file(input_file)
 
 
 
